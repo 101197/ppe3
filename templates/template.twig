@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logoIcon.gif"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="css/footer.css">
+    {% block stylesheete %}{% endblock %}
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-light navbar-expand-md">
+        <div class="container">
+            <a class="navbar-brand" href="/accueil">
+                <img width= "75" height="70" src="img/logoPoulpe.png"/>
+            </a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <form class="form-inline navbar-left" action="/catalogue">
+                    <input type="hidden" name="categorie" value="">
+                    <input type="hidden" name="type" value="">
+                    <input type="hidden" name="stars" value="">
+                    <input type="hidden" name="maxprice" value="">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="input-group-text" onclick="this.parentNode.parentNode.submit()">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                        <input class="form-control" type="text" name="search" placeholder="Recherche">
+                    </div>
+                </form>
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Accueil</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">Figurines</a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="">Pop</a>
+                            <a class="dropdown-item" href="">Nenedoroid</a>
+                            <a class="dropdown-item" href="">Officielles</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">Vêtements</a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="">Hommes</a>
+                            <a class="dropdown-item" href="">Femmes</a>
+                            <a class="dropdown-item" href="">Enfants</a>
+                            <a class="dropdown-item" href="">Cosplays</a>
+                            <a class="dropdown-item" href="">Kigurumi</a>
+                            <a class="dropdown-item" href="">Bijoux</a>
+                            <a class="dropdown-item" href="">Sous-vêtements</a>
+                            <a class="dropdown-item" href="">Bonnets & Casquettes</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="position:relative" href="/panier">
+                            <img width="22" height="22" src="img/panier.png"/>
+                            <span class="badge badge-pill badge-primary" style="position:absolute;left:20px;top:4px;font-size:10px;color:white;font-weight:bold;">0</span>Panier
+                        </a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Compte </a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="/connexion">Identifiez vous !</a>
+                            <a class="dropdown-item" href="/inscription">Nouveau client !</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+{% block content %}{% endblock %}
+
+<footer style="background-color:rgb(23,50,77);">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 footer-navigation">
+            <h3 style="margin-top:12%; margin-left:19%; font-size:558%;"><a href="/accueil.php">Ô '<span>&nbsp;Tako</span></a></h3>
+        </div>
+        <div class="col-sm-6 col-md-4 footer-contacts">
+            <div><span class="fa fa-map-marker footer-contacts-icon" style="background-color:rgb(21,107,159); margin-top:8%;"> </span>
+                <p>
+                <div class="adresse-footer" style="font-size:20px; margin-left:13%; margin-top:-9%;"><span class="new-line-span" style="font-size:90%;">8 rue des tentacules, Avenue des otakus,</span> 66000 Octlantis World.</p></div>
+        </div>
+        <div><i class="fa fa-phone footer-contacts-icon" style="background-color:rgb(21,107,159); margin-top:4%;"></i>
+            <p class="footer-center-info email text-left" style="margin-top:2%;"> +334 27 86 84 23</p>
+        </div>
+        <div><i class="fa fa-envelope footer-contacts-icon" style="background-color:rgb(21,107,159);"></i>
+            <p style="margin-top:2%;"> <a href="mailto:Poulpi.OTako@ppe.sio" target="_top">Poulpi.OTako@ppe.sio</a></p>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-4 footer-about">
+        <h4 style="margin-top:14%; font-size:125%;">Pour information :&nbsp;</h4>
+        <p style="font-size:90%;"> Octlantis est une ville sous-marine construite par des poulpes ! <br>
+            Plus d'infos ici --> <a href="https://www.lexpress.fr/actualite/sciences/voici-octlantis-une-ville-sous-marine-construite-par-des-poulpes_1944982.html">Octlantis 🐙</a> &nbsp;</p>
+    </div>
+    </div>
+</footer>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+{% block javascript %}{% endblock %}
+
+</body>
+</html>
