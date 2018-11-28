@@ -1,0 +1,40 @@
+/* Carrousel */
+div#slider {
+  width: 80%; /* Largeur de la fenêtre à 80% pour la rendre responsive */
+  min-height: 50px; /* Hauteur minimum */
+  max-height: 400px; /* Hauteur maximum */
+  max-width: 1000px; /* Largeur maximum */
+  overflow: hidden; /*Cacher ce qui dépasse de la div */
+  margin: auto;
+  position: relative; /* Centre le carrousel */
+  border-radius: 8px;
+}
+div#slider figure{
+  position: relative;
+  width: 500%;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  text-align: right;
+  animation: 30s slidy infinite;
+}
+
+div#slider figure img {
+  width: 20%; /* Chaque image prend 1/5 de l'espace horizontal */
+  min-height: 50px; /* Hauteur minimum */
+  max-height: 400px; /* Hauteur maximum */
+  float: left; /*Pour éviter un bug de Safari 5 pour Windows */
+}
+
+/* Animer la bande */
+@-webkit-keyframes slidy { /* Chaque image du carrousel sera affichée dans la div pour 20% de la durée totale de l'animation, le temps de déplacement étant de 5% */
+  0% { left: 0%; }
+  20% { left: 0%; }
+  25% { left: -100%; }
+  45% { left: -100%; }
+  50% { left: -200%; }
+  70% { left: -200%; }
+  75% { left: -300%; }
+  95% { left: -300%; }
+  100% { left: -400%; }
+}

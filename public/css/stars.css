@@ -1,0 +1,71 @@
+/*stars*/
+:root{
+  --starsize: 200%;
+}
+.stars0{
+  background: url(../img/stars.png) 99% 0;
+  background-size: var(--starsize);
+  background-repeat: no-repeat;
+}
+.stars0_5{
+  background: url(../img/stars.png) -121px -30px;
+  background-size: var(--starsize);
+  background-repeat: no-repeat;
+}
+.stars1{
+  background: url(../img/stars.png) 80% 0;
+  background-size: var(--starsize);
+  background-repeat: no-repeat;
+}
+.stars1_5{
+  background: url(../img/stars.png) -91px -30px;
+  background-size: var(--starsize);
+  background-repeat: no-repeat;
+}
+.stars2{
+  background: url(../img/stars.png) 60% 0;
+  background-size: var(--starsize);
+  background-repeat: no-repeat;
+}
+.stars2_5{
+  background: url(../img/stars.png) -61px -30px;
+  background-size: var(--starsize);
+  background-repeat: no-repeat;
+}
+.stars3{
+  background: url(../img/stars.png) 40% 0;
+  background-size: var(--starsize);
+  background-repeat: no-repeat;
+}
+.stars3_5{
+  background: url(../img/stars.png) -31px -30px;
+  background-size: var(--starsize);
+  background-repeat: no-repeat;
+}
+.stars4{
+  background: url(../img/stars.png) 19% 0;
+  background-size: var(--starsize);
+  background-repeat: no-repeat;
+}
+.stars4_5{
+  background: url(../img/stars.png) 1px -30px;
+  background-size: var(--starsize);
+  background-repeat: no-repeat;
+}
+.stars5{
+  background: url(../img/stars.png) 0 0;
+  background-size: var(--starsize);
+  background-repeat: no-repeat;
+}
+
+
+#starsselecteur{
+  height: 28px;
+  width: 150px;
+  margin: 8px 16px;
+  display: inline-flex;
+}
+
+#starsselecteur img{
+  margin: auto;
+}
