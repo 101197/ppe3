@@ -90,7 +90,7 @@ class Client
     /**
      * @var string
      *
-     * @ORM\column(name="token", type="string", length=1, nullable=false)
+     * @ORM\column(name="token", type="string", length=40, nullable=false)
      */
     private $token;
 
