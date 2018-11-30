@@ -69,7 +69,7 @@ class Client
     /**
      * @var string
      *
-     * @ORM\column(name="avatar_url", type="string", length=25, nullable=false)
+     * @ORM\column(name="avatar_url", type="string", length=2000, nullable=false)
      */
     private $avatarURL;
 

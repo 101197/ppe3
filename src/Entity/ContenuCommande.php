@@ -162,4 +162,16 @@ class ContenuCommande
 
         return $this;
     }
+
+    public function getTaxe(): ?Taxes
+    {
+        return $this->taxe;
+    }
+
+    public function setTaxe(?Taxes $taxe): self
+    {
+        $this->taxe = $taxe;
+
+        return $this;
+    }
 }
