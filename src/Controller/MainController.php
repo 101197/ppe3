@@ -36,4 +36,14 @@ class MainController extends AbstractController
             'title'=>'Mentions légales',
             ]);
     }
+
+    /**
+     * @Route("/catalogue", name="catalogue")
+     */
+    public function getCatalogue()
+    {
+        return $this->render('main/catalogue.html.twig', [
+            'title'=>'Catalogue',
+        ]);
+    }
 }
