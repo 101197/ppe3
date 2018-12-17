@@ -73,138 +73,23 @@
                 </div>
             </div>
             <div class="col-md-10 col-md-push-2 d-flex flex-wrap justify-content-center justify-content-lg-start">
-                <a href="/produit/49" class="articleElm rounded m-2">
-                    <div class="articleNom">
-                        Tokyo ghoul
-                    </div>
-                    <div class="imgBox">
-                        <img src="http://ppe2.magicorp.fr/assets/img/imagesupload/nendoroid_tokyo_ghoul.jpg" alt="">
-                    </div>
-                    <div class="articleStars stars stars0"></div>
-                    <div class="articlePrix">
-                        16.80
-                    </div>
-                </a>
-                <a href="/produit/49" class="articleElm rounded m-2">
-                    <div class="articleNom">
-                        Tokyo ghoul
-                    </div>
-                    <div class="imgBox">
-                        <img src="http://ppe2.magicorp.fr/assets/img/imagesupload/nendoroid_tokyo_ghoul.jpg" alt="">
-                    </div>
-                    <div class="articleStars stars stars0_5"></div>
-                    <div class="articlePrix">
-                        16.80
-                    </div>
-                </a>
-                <a href="/produit/49" class="articleElm rounded m-2">
-                    <div class="articleNom">
-                        Tokyo ghoul
-                    </div>
-                    <div class="imgBox">
-                        <img src="http://ppe2.magicorp.fr/assets/img/imagesupload/nendoroid_tokyo_ghoul.jpg" alt="">
-                    </div>
-                    <div class="articleStars stars stars1"></div>
-                    <div class="articlePrix">
-                        16.80
-                    </div>
-                </a>
-                <a href="/produit/49" class="articleElm rounded m-2">
-                    <div class="articleNom">
-                        Tokyo ghoul
-                    </div>
-                    <div class="imgBox">
-                        <img src="http://ppe2.magicorp.fr/assets/img/imagesupload/nendoroid_tokyo_ghoul.jpg" alt="">
-                    </div>
-                    <div class="articleStars stars stars1_5"></div>
-                    <div class="articlePrix">
-                        16.80
-                    </div>
-                </a>
-                <a href="/produit/49" class="articleElm rounded m-2">
-                    <div class="articleNom">
-                        Tokyo ghoul
-                    </div>
-                    <div class="imgBox">
-                        <img src="http://ppe2.magicorp.fr/assets/img/imagesupload/nendoroid_tokyo_ghoul.jpg" alt="">
-                    </div>
-                    <div class="articleStars stars stars2"></div>
-                    <div class="articlePrix">
-                        16.80
-                    </div>
-                </a>
-                <a href="/produit/49" class="articleElm rounded m-2">
-                    <div class="articleNom">
-                        Tokyo ghoul
-                    </div>
-                    <div class="imgBox">
-                        <img src="http://ppe2.magicorp.fr/assets/img/imagesupload/nendoroid_tokyo_ghoul.jpg" alt="">
-                    </div>
-                    <div class="articleStars stars stars2_5"></div>
-                    <div class="articlePrix">
-                        16.80
-                    </div>
-                </a>
-                <a href="/produit/49" class="articleElm rounded m-2">
-                    <div class="articleNom">
-                        Tokyo ghoul
-                    </div>
-                    <div class="imgBox">
-                        <img src="http://ppe2.magicorp.fr/assets/img/imagesupload/nendoroid_tokyo_ghoul.jpg" alt="">
-                    </div>
-                    <div class="articleStars stars stars3"></div>
-                    <div class="articlePrix">
-                        16.80
-                    </div>
-                </a>
-                <a href="/produit/49" class="articleElm rounded m-2">
-                    <div class="articleNom">
-                        Tokyo ghoul
-                    </div>
-                    <div class="imgBox">
-                        <img src="http://ppe2.magicorp.fr/assets/img/imagesupload/nendoroid_tokyo_ghoul.jpg" alt="">
-                    </div>
-                    <div class="articleStars stars stars3_5"></div>
-                    <div class="articlePrix">
-                        16.80
-                    </div>
-                </a>
-                <a href="/produit/49" class="articleElm rounded m-2">
-                    <div class="articleNom">
-                        Tokyo ghoul
-                    </div>
-                    <div class="imgBox">
-                        <img src="http://ppe2.magicorp.fr/assets/img/imagesupload/nendoroid_tokyo_ghoul.jpg" alt="">
-                    </div>
-                    <div class="articleStars stars stars4"></div>
-                    <div class="articlePrix">
-                        16.80
-                    </div>
-                </a>
-                <a href="/produit/49" class="articleElm rounded m-2">
-                    <div class="articleNom">
-                        Tokyo ghoul
-                    </div>
-                    <div class="imgBox">
-                        <img src="http://ppe2.magicorp.fr/assets/img/imagesupload/nendoroid_tokyo_ghoul.jpg" alt="">
-                    </div>
-                    <div class="articleStars stars stars4_5"></div>
-                    <div class="articlePrix">
-                        16.80
-                    </div>
-                </a>
-                <a href="/produit/49" class="articleElm rounded m-2">
-                    <div class="articleNom">
-                        Tokyo ghoul
-                    </div>
-                    <div class="imgBox">
-                        <img src="http://ppe2.magicorp.fr/assets/img/imagesupload/nendoroid_tokyo_ghoul.jpg" alt="">
-                    </div>
-                    <div class="articleStars stars stars5"></div>
-                    <div class="articlePrix">
-                        16.80
-                    </div>
-                </a>
+                {% for produit in produits %}
+                    {{ dump(produit) }}
+                    <a href="/produit/{{ produit.idProduit }}" class="articleElm rounded m-2">
+                        <div class="articleNom">
+                            {{ produit.libelleProduit }}
+                        </div>
+                        <div class="imgBox">
+                            <img src="{{ produit.lesPhotosProduit[0].nomImage }}" alt="">
+                        </div>
+                        <div class="articleStars stars stars0"></div>
+                        <div class="articlePrix">
+                            {{ produit.prixUnitaireHT }}
+                        </div>
+                    </a>
+                {% endfor %}
+
+
             </div>
         </div>
     </div>

@@ -79,7 +79,7 @@ class Produit
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="PhotoProduit", mappedBy="produit")
+     * @ORM\OneToMany(targetEntity="PhotoProduit", mappedBy="produit", fetch="EAGER")
      */
     private $lesPhotosProduit;
 
@@ -87,7 +87,7 @@ class Produit
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="produit")
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="produit", fetch="EAGER")
      */
     private $lesCommentaires;
 
@@ -103,7 +103,7 @@ class Produit
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="LignePanier", mappedBy="produit")
+     * @ORM\OneToMany(targetEntity="LignePanier", mappedBy="produit", fetch="EAGER")
      */
     private $lesLignesPanier;
 
