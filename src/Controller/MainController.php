@@ -56,10 +56,17 @@ class MainController extends AbstractController
     /**
      * @Route("/produit/{id}", name="produit")
      */
-    public function getProduit()
+    public function getProduit($id)
     {
+        $produit = $this->getDoctrine()
+            ->getRepository(Produit::class)
+            ->find($id);
+
         return $this->render('main/produit.html.twig', [
             'title'=>'Produits',
+            'produit' => $produit,
         ]);
     }
+
+
 }

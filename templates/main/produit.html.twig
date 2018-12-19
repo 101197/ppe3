@@ -1,0 +1,102 @@
+{% extends 'template.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/css/avis.css">
+    <link rel="stylesheet" href="/css/styleavis.css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="m-2" style="overflow:auto; position:relative">
+                    <img class="rounded mx-auto d-block" id="imgproduit" src="{{ produit.lesPhotosProduit[0].nomImage }}" data-bs-hover-animate="pulse" style="width:422px; max-width:none; height:385px;">
+                </div>
+                <div class="m-2" id="listimgproduit">
+                </div>
+            </div>
+            <div class="col-md-4">
+
+                <form method="post" style="display: initial;">
+                    <h1 class="text-capitalize text-center">{{ produit.libelleProduit }}</h1>
+
+                    {% if produit.quantiteProduit > 0 %}
+                    <h5 class="text-left text-success"><i class="fa fa-check"></i> Produit disponible en stock</h5>
+                    {% else %}
+                    <h5 class="text-left text-danger"><i class="fa fa-close"></i> Produit indisponible</h5>
+                    {% endif %}
+
+                    <h4 class="text-right" style="margin-top:18px;max-width:68px;height:33px;">Avis : </h4>
+                    <!-- TODO: refaire la gestion des étoile -->
+                    <div class="float-right d-flex" style="margin-top: -40px; margin-right: 28px;">
+                        <div class="stars" style="height: 26px; width: 148px;"></div>
+                    </div>
+                    <div style="margin:16px 0">
+                        <h5 style="font-size:25px;display:inline-block">Quantité :</h5>
+                        <select class="float-right" name="quentiterproduit" style="height:26px;">
+                            <optgroup label="Quantité">
+                                {% for nbProduit in 1..produit.quantiteProduit %}
+                                <option value="{{ nbProduit }}"> {{ nbProduit }} </option>
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+                    </div>
+                    <h1 class="text-center text-warning md-auto" style="font-size: 47px">{{ produit.prixUnitaireHT }}€</h1>
+                    <button class="btn btn-primary" name="addproduitpanier" type="submit" data-bs-hover-animate="tada" style="margin:18px;font-size:31px;">Ajouter au panier </button>
+                </form>
+
+            </div>
+        </div>
+        <div style="margin-top:19px;">
+            <h1>Description </h1>
+            <div>
+                {{ produit.descriptionProduit }}
+            </div>
+        </div>
+
+        <form class="" method='POST'>
+            <div class="col-sm-8 comment-box" style="margin-bottom:60px;">
+                <input type='hidden' name='IDClient' value="">
+                <div id="starsselecteur" class="stars0">
+                    <img src="/img/empty_star.png" style="margin-left:0px;" alt="1 étoiles" height="28" width="28" data-star="1">
+                    <img src="/img/empty_star.png" alt="2 étoiles" height="28" width="28" data-star="2">
+                    <img src="/img/empty_star.png" alt="3 étoiles" height="28" width="28" data-star="3">
+                    <img src="/img/empty_star.png" alt="4 étoiles" height="28" width="28" data-star="4">
+                    <img src="/img/empty_star.png" alt="5 étoiles" height="28" width="28" data-star="5">
+                    <input type="hidden" name="avis" value="0">
+                </div><br>
+                <input class="form-control" type='text' name='titreAvis' placeholder="Titre ou résumé pour votre commentaire (requis)"><br>
+                <textarea class="form-control textarea-avis" name='message' placeholder="Entrez ici votre commentaire"></textarea><br>
+                <button class="button-avis" type='submit' name='commentSubmit'>Commenter</button>
+            </div>
+        </form>
+
+        <div class='col-sm-8 comment-box'>
+            <div class="form-row">
+                <div class="stars stars" style="height: 26px; width: 148px; float: left; margin-right:8px;"></div>
+                <p class="text-justify" style="margin-top:8px;">Commentaire fait le par</p>
+            </div>
+            <p></p>
+            <div class="textarea-avis">
+            </div>
+            <form class='delete-form' method='POST'>
+                <input type='hidden' name='IDAvis' value=''>
+                <button type='submit' name='commentDelete'>Supprimer</button>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <h3 class="text-center" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;"></h3>
+                <img class="rounded" src="" style="width:139px;margin-left:54px;">
+                <div><button class="btn btn-primary btn-lg" type="button" onclick="document.location.href='produit/id'" style="width:255px;height:50px;margin-top:1px;">Voir le produit</button></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="/js/image.js"></script>
+    <script src="/js/avis.js"></script>
+{% endblock %}
+

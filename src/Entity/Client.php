@@ -4,6 +4,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Client
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="client")
  * @ORM\Entity
  */
-class Client
+class Client implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -93,6 +94,11 @@ class Client
      * @ORM\column(name="token", type="string", length=40, nullable=false)
      */
     private $token;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
 
     //collection des commandes correspondant a un client
@@ -422,6 +428,62 @@ class Client
         }
 
         return $this;
+    }
+
+    //methodes qui sont dans les interfaces
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->identifiant;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles():array
+    {
+        $roles = $this->roles;
+        //guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt() {}
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials() {}
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize(): string
+    {
+        return serialize([$this->idClient, $this->identifiant, $this->motDePasse]);
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized):void
+    {
+        [$this->idClient, $this->identifiant, $this->motDePasse] = unserialize($serialized, ['allowed_classes' => false]);
     }
 
 }
