@@ -2,14 +2,17 @@
 
 namespace App\Controller;
 
-use Doctrine\DBAL\Types\TextType;
-use http\Env\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Entity\Client;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class SecurityController extends AbstractController
 {
@@ -34,18 +37,17 @@ class SecurityController extends AbstractController
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
+    public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
 
         //instanciation d'un client
-        $unClient = newClient();
+        $unClient = new Client();
 
         //creation du formulaire en fonction de client
         $form = $this->createFormBuilder($unClient)
-            ->add(identifiant, TextType::class)
-            ->add('password', PasswordType::class)
-
+            ->add('identifiant', TextType::class)
+            ->add('motDePasse', PasswordType::class)
             //attribut qu'on ajoute dans la classe client pour la confirmation du mdp
-            ->add('plainPassword', PasswordType::class)
             ->add('save', SubmitType::class, array('label' => 'Add user'))
             ->getForm();
 
@@ -53,13 +55,12 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         //test si le formulaire est soumise
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             //test et hache le mdp
-            $password = $passwordEncoder->encodePassword($unClient, $unClient>getPassword());
+            $password = $passwordEncoder->encodePassword($unClient, $unClient->getPassword());
 
             //affecte le mot de passe au client
-            $unClient>setPassword($password);
+            $unClient->setPassword($password);
             $entityManager = $this->getDoctrine()->getManager();
 
             //envoi le nouveau client a la bdd
@@ -70,30 +71,33 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('connexion');
         }
 
-        return $this->render('security/inscription.html.twig', ['form' => $form->createView()]);
-
-
-        //route connexion
-        /**
-         * @Route("/connexion", name="connexion")
-         */
-        public function login(AuthenticationUtils $authenticationUtils)
-        {
-            //creer un formulaire de nulle part
-            $form = $this->get('form.factory')
-                ->createNamedBuilder(null)
-                ->add('_username', TextType::class, ['label' => 'Identifiant'])
-                ->add('_password', PasswordType::class, ['label' => 'Mot de passe'])
-                ->add('ok', SubmitType::class, ['label' => 'Ok', 'attr' => ['class' => 'btn-primary btn-block']])
-                ->getForm();
-
-            return $this->render('security/connexion.html.twig', [
-                'form' => $form->createView(),
-                'error' => $authenticationUtils->getLastAuthenticationError(),
-            ]);
-        }
-
+        return $this->render('security/inscription.html.twig', [
+            'form' => $form->createView(),
+            'title' => 'inscription',
+        ]);
     }
+
+    //route connexion
+    /**
+     * @Route("/connexion", name="connexion")
+     */
+    public function login(AuthenticationUtils $authenticationUtils)
+    {
+        //creer un formulaire de nulle part
+        $form = $this->get('form.factory')
+            ->createNamedBuilder(null)
+            ->add('_username', TextType::class, ['label' => 'Identifiant'])
+            ->add('_password', PasswordType::class, ['label' => 'Mot de passe'])
+            ->add('ok', SubmitType::class, ['label' => 'Ok', 'attr' => ['class' => 'btn-primary btn-block']])
+            ->getForm();
+
+        return $this->render('security/connexion.html.twig', [
+            'form' => $form->createView(),
+            'error' => $authenticationUtils->getLastAuthenticationError(),
+            'title' => 'connexion',
+        ]);
+    }
+
 
 
 

@@ -441,6 +441,11 @@ class Client implements UserInterface, \Serializable
         return (string) $this->identifiant;
     }
 
+    public function getPassword(): string
+    {
+        return (string) $this->motDePasse;
+    }
+
     /**
      * @see UserInterface
      */

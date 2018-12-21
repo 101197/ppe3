@@ -1,0 +1,67 @@
+{% extends 'template.twig' %}
+
+
+{% block stylesheet %}
+{% endblock %}
+
+
+{% block content %}
+    <div align="center">
+        <div class="container">
+            <div class="card card-container" style="max-width: 350px; padding: 40px 40px;">
+                <h1>Inscription</h1>
+                <br /><br />
+                {{ form_start(form) }}
+                {#<form method="POST">#}
+                    <!-- pseudo -->
+                    <div class="form-group">
+                        {{ form_row(form.identifiant) }}
+                        {#<input type="text" class="form-control" placeholder="Votre pseudo" id="pseudo" name="pseudo"/>#}
+                    </div>
+                    <!-- mail -->
+                    <div class="form-group">
+
+                        {#<input type="email" class="form-control" placeholder="Votre mail" id="mail" name="mail"/>#}
+                    </div>
+                    <!-- confirmation mail (combiné avec mail)-->
+                    <div class="form-group">
+                        {{ form_row(form.mail2) }}
+                        {#<input type="email" class="form-control" placeholder="Confirmez votre mail" id="mail2" name="mail2"/>#}
+                    </div>
+                    <!-- mdp -->
+                    <div class="form-group">
+                        {{ form_row(form.mdp) }}
+                        {#<input type="password" class="form-control" placeholder="Votre mot de passe" id="mdp" name="mdp"/>#}
+                    </div>
+                    <!-- confirmation mdp -->
+                    <div class="form-group">
+                        {{ form_row(form.mail2) }}
+                        {#<input type="password" class="form-control" placeholder="Confirmez votre mot de passe" id="mdp2" name="mdp2"/>#}
+                    </div>
+                    <!-- Nom -->
+                    <div class="form-group">
+                        {{ form_row(form.nom) }}
+                        {#<input type="nom" class="form-control" placeholder="Votre nom" id="nom" name="nom"/>#}
+                    </div>
+                    <!-- Prénom -->
+                    <div class="form-group">
+                        {{ form_row(form.prenom) }}
+                        {#<input type="prenom" class="form-control" placeholder="Votre prénom" id="prenom" name="prenom"/>#}
+                    </div>
+                    <!-- Téléphone -->
+                    <div class="form-group">
+                        {{ form_row(form.telephone) }}
+                        {#<input type="telephone" class="form-control" placeholder="Votre n° de téléphone" id="telephone" name="telephone"/>#}
+                    </div>
+                    <input type="submit" class="btn btn-primary" name="forminscription" value="Je m'inscris" />
+                {#//</form>#}
+                {{ form_end(form) }}
+                <font color="red"></font>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+{% endblock %}
