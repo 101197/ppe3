@@ -45,6 +45,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">Figurines</a>
                         <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="/catalogue">Tous les produits</a>
                             <a class="dropdown-item" href="">Pop</a>
                             <a class="dropdown-item" href="">Nenedoroid</a>
                             <a class="dropdown-item" href="">Officielles</a>
@@ -53,6 +54,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">Vêtements</a>
                         <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="/catalogue">Tous les vetements</a>
                             <a class="dropdown-item" href="">Hommes</a>
                             <a class="dropdown-item" href="">Femmes</a>
                             <a class="dropdown-item" href="">Enfants</a>
@@ -73,8 +75,13 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Compte </a>
                         <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="/connexion">Identifiez vous !</a>
-                            <a class="dropdown-item" href="/inscription">Nouveau client !</a>
+                            {% if is_granted('ROLE_USER') %}
+                                <a class="dropdown-item" href="/profil">Modifier mon profil</a>
+                                <a class="dropdown-item" href="{{ path("deconnexion") }}">Déconnectez-vous !</a>
+                            {% else %}
+                                <a class="dropdown-item" href="{{ path("connexion") }}">Identifiez vous !</a>
+                                <a class="dropdown-item" href="{{ path("inscription") }}">Nouveau client !</a>
+                            {% endif %}
                         </div>
                     </li>
                 </ul>

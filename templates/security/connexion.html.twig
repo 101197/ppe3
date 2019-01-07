@@ -9,17 +9,17 @@
             <div class="card card-container" style="max-width: 350px; padding: 40px 40px;">
                 <h2>Connexion</h2>
                 <br /><br />
-                <form method="POST">
+                {{ form_start(form) }}
                     <div class="form-group">
-                        <input type="text" class="form-control"name="pseudoconnect" placeholder="Pseudo" />
+                        {{ form_row(form._username) }}
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control"name="mdpconnect" placeholder="Mot de passe" />
+                        {{ form_row(form._password) }}
                     </div>
 
                     <br /><br />
-                    <input type="submit" class="btn btn-primary" name="formconnexion" value="Se connecter" />
-                </form>
+                    {{ form_row(form.ok) }}
+                {{ form_end(form) }}
                 <font color="red"></font>
             </div>
         </div>

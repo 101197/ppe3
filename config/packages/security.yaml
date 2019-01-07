@@ -10,7 +10,7 @@ security:
         app user provider:
             entity:
                 class: App\Entity\Client
-                property: pseudo
+                property: identifiant
 
     firewalls:
         dev:

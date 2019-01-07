@@ -142,7 +142,8 @@ class SecurityController extends AbstractController
             $password = $passwordEncoder->encodePassword($unClient, $unClient->getPassword());
 
             //affecte le mot de passe au client
-            $unClient->setPassword($password);
+            $unClient->setMotDePasse($password);
+            $unClient->setDateCreation(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
 
             //envoi le nouveau client a la bdd
@@ -168,9 +169,9 @@ class SecurityController extends AbstractController
         //creer un formulaire de nulle part
         $form = $this->get('form.factory')
             ->createNamedBuilder(null)
-            ->add('_username', TextType::class, ['label' => 'Identifiant'])
-            ->add('_password', PasswordType::class, ['label' => 'Mot de passe'])
-            ->add('ok', SubmitType::class, ['label' => 'Ok', 'attr' => ['class' => 'btn-primary btn-block']])
+            ->add('_username', TextType::class, ['label' => 'Identifiant', 'attr' => ['class' => 'form-control']])
+            ->add('_password', PasswordType::class, ['label' => 'Mot de passe', 'attr' => ['class' => 'form-control']])
+            ->add('ok', SubmitType::class, ['label' => 'Connexion', 'attr' => ['class' => 'btn-primary btn']])
             ->getForm();
 
         return $this->render('security/connexion.html.twig', [

@@ -42,7 +42,7 @@ class Client implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\column(name="mot_de_passe", type="string", length=50, nullable=false)
+     * @ORM\column(name="mot_de_passe", type="string", length=250, nullable=false)
      */
     private $motDePasse;
 
@@ -70,14 +70,14 @@ class Client implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\column(name="avatar_url", type="string", length=2000, nullable=false)
+     * @ORM\column(name="avatar_url", type="string", length=2000, nullable=true)
      */
     private $avatarURL;
 
     /**
      * @var \DateTime
      *
-     * @ORM\column(name="date_creation", type="datetime", nullable=false)
+     * @ORM\column(name="date_creation", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $dateCreation;
 
@@ -86,12 +86,12 @@ class Client implements UserInterface, \Serializable
      *
      * @ORM\column(name="confirme", type="boolean", length=1, nullable=false)
      */
-    private $confirme;
+    private $confirme = true;
 
     /**
      * @var string
      *
-     * @ORM\column(name="token", type="string", length=40, nullable=false)
+     * @ORM\column(name="token", type="string", length=40, nullable=true)
      */
     private $token;
 
