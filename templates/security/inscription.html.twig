@@ -16,44 +16,39 @@
                     <!-- pseudo -->
                     <div class="form-group">
                         {{ form_row(form.identifiant) }}
-                        {#<input type="text" class="form-control" placeholder="Votre pseudo" id="pseudo" name="pseudo"/>#}
                     </div>
                     <!-- mail -->
                     <div class="form-group">
-
-                        {#<input type="email" class="form-control" placeholder="Votre mail" id="mail" name="mail"/>#}
+                        {{ form_row(form.email.first) }}
                     </div>
                     <!-- confirmation mail (combiné avec mail)-->
                     <div class="form-group">
-                        {{ form_row(form.mail2) }}
-                        {#<input type="email" class="form-control" placeholder="Confirmez votre mail" id="mail2" name="mail2"/>#}
+                        {{ form_row(form.email.second) }}
                     </div>
                     <!-- mdp -->
                     <div class="form-group">
-                        {{ form_row(form.mdp) }}
-                        {#<input type="password" class="form-control" placeholder="Votre mot de passe" id="mdp" name="mdp"/>#}
+                        {{ form_row(form.motDePasse.first) }}
                     </div>
                     <!-- confirmation mdp -->
                     <div class="form-group">
-                        {{ form_row(form.mail2) }}
-                        {#<input type="password" class="form-control" placeholder="Confirmez votre mot de passe" id="mdp2" name="mdp2"/>#}
+                        {{ form_row(form.motDePasse.second) }}
                     </div>
                     <!-- Nom -->
                     <div class="form-group">
                         {{ form_row(form.nom) }}
-                        {#<input type="nom" class="form-control" placeholder="Votre nom" id="nom" name="nom"/>#}
                     </div>
                     <!-- Prénom -->
                     <div class="form-group">
                         {{ form_row(form.prenom) }}
-                        {#<input type="prenom" class="form-control" placeholder="Votre prénom" id="prenom" name="prenom"/>#}
                     </div>
                     <!-- Téléphone -->
                     <div class="form-group">
                         {{ form_row(form.telephone) }}
-                        {#<input type="telephone" class="form-control" placeholder="Votre n° de téléphone" id="telephone" name="telephone"/>#}
                     </div>
-                    <input type="submit" class="btn btn-primary" name="forminscription" value="Je m'inscris" />
+
+                    <div class="form-group">
+                        {{ form_row(form.save) }}
+                    </div>
                 {#//</form>#}
                 {{ form_end(form) }}
                 <font color="red"></font>

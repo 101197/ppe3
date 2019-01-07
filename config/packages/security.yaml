@@ -3,7 +3,7 @@ security:
 
     encoders:
         App\Entity\Client:
-            algoritm: bcrypt
+            algorithm: bcrypt
             cost: 12
 
     providers:

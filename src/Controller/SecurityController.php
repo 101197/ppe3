@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -45,10 +47,90 @@ class SecurityController extends AbstractController
 
         //creation du formulaire en fonction de client
         $form = $this->createFormBuilder($unClient)
-            ->add('identifiant', TextType::class)
-            ->add('motDePasse', PasswordType::class)
+            ->add('identifiant', TextType::class, [
+                'label' => 'Identifiant',
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Votre identifiant',
+                ]
+            ])
+
+
+            ->add('email', RepeatedType::class, [
+                'type' => EmailType::class,
+                'invalid_message' => 'Les deux emails ne corespondent pas',
+                'required' => true,
+                'first_options' => [
+                    'label' => 'Email',
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Votre adresse mail',
+                    ],
+                ],
+                'second_options' => [
+                    'label' => 'Confirmation de l\'email',
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Confirmez votre adresse mail',
+                    ],
+                ]
+            ])
+
+            ->add('motDePasse', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les deux mots de passe ne corespondent pas',
+                'required' => true,
+                'first_options' => [
+                    'label' => 'Mot de passe',
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Votre mot de passe',
+                    ],
+                ],
+                'second_options' => [
+                    'label' => 'Confirmation du mot de passe',
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Confirmez votre mot de passe',
+                    ],
+                ]
+            ])
+
+            ->add('nom', TextType::class, [
+                'label' => 'Nom',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Votre nom',
+                ]
+            ])
+
+            ->add('prenom', TextType::class, [
+                'label' => 'Prenom',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Votre prénom',
+                ]
+            ])
+
+            ->add('telephone', NumberType::class, [
+                'label' => 'Telephone',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Votre numero de telephone',
+                ]
+            ])
+
             //attribut qu'on ajoute dans la classe client pour la confirmation du mdp
-            ->add('save', SubmitType::class, array('label' => 'Add user'))
+            ->add('save', SubmitType::class, [
+                'label' => 'S\'inscrire',
+                'attr' => [
+                    'class' => 'btn btn-primary',
+                ]
+            ])
             ->getForm();
 
         //reccupere la requete

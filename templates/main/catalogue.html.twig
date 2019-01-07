@@ -74,7 +74,6 @@
             </div>
             <div class="col-md-10 col-md-push-2 d-flex flex-wrap justify-content-center justify-content-lg-start">
                 {% for produit in produits %}
-                    {{ dump(produit) }}
                     <a href="/produit/{{ produit.idProduit }}" class="articleElm rounded m-2">
                         <div class="articleNom">
                             {{ produit.libelleProduit }}
